@@ -182,18 +182,18 @@ Device name, username and password can then be changed via web user interface in
 
 ## Pedals
 
-Once PedalinoMini™ is connected to a WiFI network and you are connected to the web user interface it is time to configure which pedal/controller is connected to each of the 6 available ports.
+Once PedalinoMini™ is connected to a WiFI network and you are connected to the web user interface, it is time to configure which pedal/controller is connected to each of the 6 available ports.
 
 ![WEBUI PEDALS](./images/webui-pedals.png "Pedals")
  
 ____________|Description
 :-----------|:----------
 Mode|Select one of the following: NONE, MOMENTARY, LATCH, ANALOG, JOG WHEEL, MOMENTARY 2, MOMENTARY 3, LATCH 2, LADDER.
-Function|Define a global function for the pedal. Global pedal function override any action and it is used in any bank of the profile. An example of global pedal function can be BANK+ (move to next bank) or BANK- (move to previous bank). Other function available here are: MTC Start (MIDI Time Code or MIDI Clock Start), MTC Stop (MIDI Time Code or MIDI Clock Stop), MTC Continue (MIDI Time Code or MIDI Clock Continue), TAP (tap tempo), BPM+ (increase tempo) and BPM- (decrease tempo). Leave blank to use Actions.
+Function|Define a global function for the pedal. A global pedal function overrides any action and it is used in any bank of the profile. An example of a global pedal function can be BANK+ (move to next bank) or BANK- (move to previous bank). Other available functions here are: MTC Start (MIDI Time Code or MIDI Clock Start), MTC Stop (MIDI Time Code or MIDI Clock Stop), MTC Continue (MIDI Time Code or MIDI Clock Continue), TAP (tap tempo), BPM+ (increase tempo) and BPM- (decrease tempo). Leave blank to use Actions (see below).
 Analog|Mapping between analog pedal movement and response. Accepted values: LINEAR (as is response), LOG (great acceleration but than flat), ANTILOG (start slow with a rapid increase).
-Min|It depends of pedal mode and/or pedal function (see below).
-Max|It depends of pedal mode and/or pedal function (see below).
-Invert Polarity|Normally open (NO) and normally closed (NC) momentary switches are supported and configurable by software if the foot switch do not have a polarity switch. On analog pedal it invert the range.
+Min|It depends on the pedal mode and/or the pedal function (see below).
+Max|It depends on the pedal mode and/or the pedal function (see below).
+Invert Polarity|Normally open (NO) and normally closed (NC) momentary switches are supported and configurable by software, useful, if the foot switch does not have a polarity switch. On analog pedals this inverts the range.
 Single Press|Enable single press (including PRESS, RELEASE and CLICK events). If single press is disabled PRESS, RELEASE and CLICK events are disabled.
 Double Press|Enable double press. If double press is enabled CLICK event is postponed until double press timeout (by default 400ms). If double press is disabled DOUBLE CLICK events are disabled.
 Long Press|Enable long press. If long press is disabled LONG PRESS events are disabled.
