@@ -1,8 +1,8 @@
 [![](./images/youtube-video.jpg)](https://www.youtube.com/watch?v=ZqCsKDWJVQs)
 
-> Version 2.0 is out! Hardware is the same but there are a lot of new feautures and stability improvment. Check it out.
+> Version 2.0 is out! Hardware is the same but there are a lot of new features and stability improvement. Check it out.
 
-> Before any update save configuration, reset to factory default and reload configuration. EEPROM can change without any further advice.
+> Before doing any update make sure to save your configuration, reset to factory default and then reload configuration. EEPROM can change without any further advice.
 
 > Sep 16, 2020 - Replaced Bluedroid with NimBLE. WiFi, Bluetooth and Web UI can be active at the same time.
 
@@ -17,7 +17,7 @@ Wireless MIDI foot controller for guitarists and more.
 - Plug-and-play with any MIDI-compatible app on iOS 8 and above as well as OS X Yosemite and above.
 - High customizable using web interface
 - Bluetooth, WiFI, USB and legacy MIDI interfaces
-- No extra drivers to connect Windows, macOS, iOS (iPad/iPhone) and Android
+- No extra drivers to connect to Windows, macOS, iOS (iPad/iPhone) and Android
 - Bluetooth LE MIDI (iOS and macOS compatible)
 - Network MIDI (aka AppleMIDI or RTP-MIDI)
 - ipMIDI
@@ -35,9 +35,9 @@ Wireless MIDI foot controller for guitarists and more.
 ## Features
 
 - Support for digital foot switches (momentary or latch), analog expression pedals and jog wheels (rotary encoders)
-- 6 controllers ports. One controller port can support up to 6 indipendent switches for a total of 36 switches.
+- 6 controller ports. One controller port can support up to 6 indipendent switches for a total of 36 switches.
 - 20 banks
-- 3 user profiles
+- 3 user profiles (A, B and C)
 - 16 sequences of 10 steps each
 - Each port can connect 1 expression pedal or 1 jog wheel or up to 6 foot switches via a resitors ladder (TC HELICON Switch-6).
 - MIDI output via AppleMIDI (also known as RTP-MIDI) or ipMIDI via Wi-Fi
@@ -45,12 +45,12 @@ Wireless MIDI foot controller for guitarists and more.
 - MIDI channel, MIDI note, MIDI control code, MIDI program change can be configured by each pedal and by each bank
 - Switch debouncing and analog noise suppression without decreasing responsivenes
 - Invert polarity via software
-- Individual automatic calibration of expression pedals. Manual fine tuning is not usually requested.
-- Transform a linear expression pedal into log expression pedal and vice versa
-- Resistors ladder calibrated is easy as pressing footswitches in sequence
+- Individual automatic calibration of expression pedals. Manual fine tuning is usually not requested.
+- Transform a linear expression pedal into a log expression pedal and vice versa
+- Resistors ladder calibration is as easy as pressing footswitches in sequence
 - RGB NeoPixel/WS2812B status leds
 - Responsive and mobile-first configuration web interface (<http://pedalino.local>)
-- Smart Config technology to help users connect to a Wi-Fi network through simple app on a smartphone.
+- Smart Config technology to help users connecting to a Wi-Fi network through simple app on a smartphone.
 - OTA (Over the Air) firmware update or via HTTP (<http://pedalino.local/update>)
 
 ## Bill of materials
@@ -61,18 +61,18 @@ The shortest bill of materials ever: an ESP32 board and a OLED display. That's i
   - Tested on [DOIT ESP32 DevKit V1](https://github.com/SmartArduino/SZDOITWiKi/wiki/ESP8266---ESP32) 4M dual-mode Wi-Fi and Bluetooth module
 - OLED I2C 0.96"/1.3" display 128x64 pixels SSD1306/SH1106 based
 
-Not enough short?
+Not short enough?
 
 - An all-in-one [TTGO T-Eight ESP32](http://www.lilygo.cn/claprod_view.aspx?TypeId=21&Id=987&FId=t28:21:28) with a bigger OLED display (1.3"), 4MB PSRAM and lithium battery interface
 
-USB MIDI and DIN MIDI connection requires additional hardware.
+Note: USB MIDI and DIN MIDI connection requires additional hardware.
 
 ## Schematic
 
 ![Schematic1](./images/Schematic_PedalinoMini_Sheet-1.svg "Schematic1")
 ![Schematic2](./images/Schematic_PedalinoMini_Sheet-2.svg "Schematic2")
 
-Do not forget the add the pull-up resistors on PIN_A1 to PIN_A6 otherwise pins will be floating. A floating pin can trigger unexpected MIDI events. As alternative you can disable the not used pedals via web interface.
+Do not forget to add the pull-up resistors on PIN_A1 to PIN_A6! Otherwise pins will be floating, and a floating pin can trigger unexpected MIDI events. As an alternative you can disable the non-used pedals via the web interface.
 
 ## How to build and upload
 
@@ -88,6 +88,7 @@ Do not forget the add the pull-up resistors on PIN_A1 to PIN_A6 otherwise pins w
 
 That's all folks.
 
+
 ## USB MIDI
 
 The cheapest and compact way to implement an USB MIDI connection is using an Arduino Pro Micro and the [BlokasLabs/USBMIDI](https://github.com/BlokasLabs/USBMIDI) library. Upload the [UsbMidiConverter](https://github.com/BlokasLabs/USBMIDI/blob/master/examples/UsbMidiConverter/UsbMidiConverter.ino) example into the Arduino Pro Micro.
@@ -96,7 +97,7 @@ Serial1 of ESP32 (re-mapped to pin 18 RX and 19 TX) is connected to Serial1 (pin
 
 Arduino Pro Micro is powered by the USB MIDI connection.
 
-IMPORTANT: ESP32 board and Arduino Pro Micro must share GND.
+IMPORTANT: ESP32 board and Arduino Pro Micro must share GND!
 
 ## Booting modes
 
@@ -104,11 +105,11 @@ PedalinoMini™ has 8 booting modes:
 
 Mode|Name|Description
 ----|----|-----------
-1|Normal|BLE and WiFi are enabled. PedalinoMini™ starts the WiFi procedure on boot (connect to last AP -> SmartConfig -> WPS -> Access Point).<br>After boot PedalinoMini™ will wait for BLE-MIDI connection.
-2|Bluetooth Only|WiFi are Web UI are disabled.<br> PedalinoMini™ will wait for BLE-MIDI connection only.
-3|WiFi Only|PedalinoMini™ starts the WiFi procedure on boot (connect to last AP -> SmartConfig -> WPS -> Access Point).<br>BLE is disabled.
+1|Normal|BLE and WiFi are enabled. PedalinoMini™ starts the WiFi procedure on boot (connect to the last AP -> SmartConfig -> WPS -> Access Point).<br>After boot PedalinoMini™ will wait for a BLE-MIDI connection.
+2|Bluetooth Only|WiFi and Web UI are disabled.<br> PedalinoMini™ will wait for BLE-MIDI connection only.
+3|WiFi Only|PedalinoMini™ starts the WiFi procedure on boot (connect to last the AP -> SmartConfig -> WPS -> Access Point).<br>BLE is disabled.
 4|Access Point with Bluetooth|PedalinoMini™ skip the WiFi procedure on boot and create a WiFi Access Point.<br>PedalinoMini™ will wait for BLE-MIDI connection too.
-5|Access Point without Bluetooth|PedalinoMini™ skips the WiFi procedure on boot and create a WiFi Access Point.<br>BLE is disabled.
+5|Access Point without Bluetooth|PedalinoMini™ skips the WiFi procedure on boot and creats a WiFi Access Point.<br>BLE is disabled.
 6|Reset WiFi credentials|Forget the last connected access point.<br>On next boot PedalinoMini™ can be connected to a new AP.
 7|Ladder Config|Learn mode for your ladder pedal. Any resistors ladder (up to 6 buttons) can be calibrated just pressing footswitches in any sequence. Footswitches are numbered depending of the corresponding analog value: lower value lower number. TC HELICON Switch-6 footswitch 1 correspond to button 6, footswitch 2 to button 5, and so on until footswitch 6 to button 1.<br>Configure at least one pedal as Ladder before to proceed with configuration.
 8|Reset to factory default|
@@ -119,8 +120,8 @@ The default boot mode is (1) Normal.
 
 To select a different mode:
 
-- Press and release EN button (POWER button on TTGO T-Eight) and immediately after press and hold BOOT button (CENTER button on TTGO T-Eight)
-- Follow the istructions on display. Keep it pressed until the progress bar reach the end to reset to factory default. If you release the button before the progress bar reach the end PedalinoMini™ will start in one of the supported boot mode.
+- Press and release the EN button (POWER button on TTGO T-Eight) and immediately after that press and hold the BOOT button (CENTER button on TTGO T-Eight)
+- Follow the instructions on the display. Keep it pressed until the progress bar reaches the end to reset to factory defaults. If you release the button before the progress bar reaches the end PedalinoMini™ will start in one of the supported boot mode.
 
 Mode|Name|USB-MIDI|Legacy MIDI|RTP-MIDI|ipMIDI|BLE MIDI|OSC|Web UI|OTA Firmware Update|HTTP Firmware Update
 :--:|----|:------:|:---------:|:------:|:----:|:------:|:-:|:----:|:-----------------:|:------------------:
@@ -138,20 +139,20 @@ Mode|Name|USB-MIDI|Legacy MIDI|RTP-MIDI|ipMIDI|BLE MIDI|OSC|Web UI|OTA Firmware 
 
 PedalinoMini™ supports IEEE 802.11 b/g/n WiFi with WPA/WPA2 authentication (only 2.4 GHz).
 
-PedalinoMini™ implements Wi-Fi Protected Setup (WPS) and Smart Config technology ([Espressif’s ESP-TOUCH protocol](https://www.espressif.com/en/products/software/esp-touch/overview)). WPS needs access to the WPS button on the WiFi router. Smart Config requires a smartphone with one the following apps:
+PedalinoMini™ implements Wi-Fi Protected Setup (WPS) and Smart Config technology ([Espressif’s ESP-TOUCH protocol](https://www.espressif.com/en/products/software/esp-touch/overview)). WPS needs access to the WPS button of the WiFi router. Smart Config requires a smartphone with one of the following apps:
 
 - [ESP8266 SmartConfig](https://play.google.com/store/apps/details?id=com.cmmakerclub.iot.esptouch) for Android
 - [Espressif Esptouch](https://itunes.apple.com/us/app/espressif-esptouch/id1071176700?mt=8) for iOS
 
-If the WiFi network is not available PedalinoMini™ will create an hotspot for you. Once connected to the PedalinoMini™ hotspot, you can use the web interface to set the SSID and password of an access point that you would like to connect to.
+If the WiFi network is not available PedalinoMini™ will create a hotspot for you. Once connected to the PedalinoMini™ hotspot, you can use the web interface to set the SSID and password of an access point that you would like to connect to.
 
 - On power on Pedalino will try to connect to the last know access point
-- If it cannot connect to the last used access point within 15 seconds it enters into Smart Config mode
+- If it cannot connect to the last used access point within 15 seconds it enters Smart Config mode
 - Start one of the suggested apps to configure SSID and password
 - If it doesn't receive any SSID and password during the next 15 seconds it enters into WPS mode
 - Press WPS button on your WiFi router
-- If it doesn't receive any SSID and password during the next 15 seconds it switch to AP mode
-- In AP mode PedalinoMini™ create a WiFi network called 'Pedalino-XXXXXXXX' waiting connection from clients. The required password is XXXXXXXX (uppercase). XXXXXXXX is a variable string.
+- If it doesn't receive any SSID and password during the next 15 seconds it switches to AP mode
+- In AP mode PedalinoMini™ creates a WiFi network called 'Pedalino-XXXXXXXX' waiting connection from clients. The required password is XXXXXXXX (uppercase). XXXXXXXX is a variable string.
 - Reboot Pedalino to restart the procedure.
 
 ```C++
@@ -171,20 +172,20 @@ void wifi_connect()
 
 The responsive and mobile-first configuration web user interface is available on `http://device-name.local` address (the address is case insensitive). The device identification name is unique per device. Every device/board has a different device name. For example I am using `http://8e2de6b4.local` to connect to my PedalinoMini™.
 
-In order to know your device name and/or the IP address press for at least half a second the BOOT button and check the display.
+In order to know your device name and/or the IP address press the BOOT button for at least half a second and check the display.
 
-As alternative method you can use the IP address. If you are using the AP mode the IP address is always `192.168.4.1` and the connection address is `http://192.168.4.1` for everyone.
+As alternative method you can use the IP address. When using the AP mode the IP address is always `192.168.4.1` and the connection address is `http://192.168.4.1` for everyone.
 
-The default username and password to connect to web user interface are `admin` as username and your `device-name` in __uppercase__ as password. For example I am using `admin` as username and `8E2DE6B4` as password.
+The default username and password to connect to the web user interface are `admin` as username and your `device-name` in __uppercase__ as password. For example I am using `admin` as username and `8E2DE6B4` as password.
 
-Device name, username and password can be changed via web user interface in the Options page.
+Device name, username and password can then be changed via web user interface in the Options page.
 
 ## Pedals
 
 Once PedalinoMini™ is connected to a WiFI network and you are connected to the web user interface it is time to configure which pedal/controller is connected to each of the 6 available ports.
 
 ![WEBUI PEDALS](./images/webui-pedals.png "Pedals")
-
+ 
 ____________|Description
 :-----------|:----------
 Mode|Select one of the following: NONE, MOMENTARY, LATCH, ANALOG, JOG WHEEL, MOMENTARY 2, MOMENTARY 3, LATCH 2, LADDER.
